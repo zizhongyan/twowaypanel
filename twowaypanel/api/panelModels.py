@@ -576,7 +576,28 @@ class fit:
                         plt.title('Histogram: '+varNAMES[vv], fontsize=12)
 
                         plt.subplot(224)
-                        markers, stemline, baseline, = plt.stem(np.arange(100),sm.tsa.acf(chain, nlags = len(range(100))-1),linefmt="grey",markerfmt="Dk")
+                        max_lags = min(99, len(chain) - 1)
+                        if len(chain) < 100:
+                            print(
+                                f"Warning: The number of retained MCMC draws may be too small, "
+                                f"and the Markov chain may not have reached stationarity. "
+                                f"Current retained chain length: {len(chain)}."
+                            )
+
+                        if max_lags > 0:
+                            acf_vals = sm.tsa.acf(chain, nlags=max_lags)
+
+                            markers, stemline, baseline = plt.stem(
+                                np.arange(len(acf_vals)),
+                                acf_vals,
+                                linefmt="grey",
+                                markerfmt="Dk"
+                            )
+
+                            plt.setp(markers, markersize=1.2, markeredgecolor="k", linewidth=0.2)
+                            plt.setp(baseline, 'color', 'k', 'linewidth', 1)
+                        else:
+                            print("Warning: The retained points are too short to plot the ACF.")                        
                         plt.setp(markers, markersize=1.2, markeredgecolor="k",  linewidth=0.2)
                         plt.setp(baseline, 'color', 'k', 'linewidth', 1)
                         plt.title('Auto correlation function: '+varNAMES[vv], fontsize=12)
@@ -625,7 +646,28 @@ class fit:
                         plt.title('Histogram: '+varNAMES[vv], fontsize=12)
 
                         plt.subplot(224)
-                        markers, stemline, baseline, = plt.stem(np.arange(100),sm.tsa.acf(chain, nlags = len(range(100))-1),linefmt="grey",markerfmt="Dk")
+                        max_lags = min(99, len(chain) - 1)
+                        if len(chain) < 100:
+                            print(
+                                f"Warning: The number of retained MCMC draws may be too small, "
+                                f"and the Markov chain may not have reached stationarity. "
+                                f"Current retained chain length: {len(chain)}."
+                            )
+
+                        if max_lags > 0:
+                            acf_vals = sm.tsa.acf(chain, nlags=max_lags)
+
+                            markers, stemline, baseline = plt.stem(
+                                np.arange(len(acf_vals)),
+                                acf_vals,
+                                linefmt="grey",
+                                markerfmt="Dk"
+                            )
+
+                            plt.setp(markers, markersize=1.2, markeredgecolor="k", linewidth=0.2)
+                            plt.setp(baseline, 'color', 'k', 'linewidth', 1)
+                        else:
+                            print("Warning: The retained points are too short to plot the ACF.")     
                         plt.setp(markers, markersize=1.2, markeredgecolor="k",  linewidth=0.2)
                         plt.setp(baseline, 'color', 'k', 'linewidth', 1)
                         plt.title('Auto correlation function: '+varNAMES[vv], fontsize=12)
