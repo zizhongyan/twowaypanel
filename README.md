@@ -108,7 +108,7 @@ Please cite both the underlying paper and the software package when using this c
 ---
 
 **Code maintainer:** Zizhong Yan, Institute for Economic and Social Research (IESR), Jinan University, Guangzhou, China.  
-Email: `helloyzz@gmail.com`
+Email: `helloyzz@gmail.com`; Jingrong Li, College of Economics and Management, South China Agricultural University, Guangzhou, China. Email: `Jingronglijnu@gmail.com`.
 
 
 
